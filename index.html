@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="color-scheme:dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes">
+<meta name="theme-color" content="#0a1628">
+<meta name="description" content="学府青创研究团队 · 大学生成长高阶服务体系">
+<title>大学生成长高阶服务体系</title>
+<style>
+:root {
+  --navy-deep: #0a1628;
+  --navy: #0f1f38;
+  --navy-mid: #152a4a;
+  --navy-light: #1c3358;
+  --gold: #c8a96e;
+  --gold-light: #e0d0a8;
+  --gold-pale: #f0e8d4;
+  --gold-dim: #8b7332;
+  --text-primary: #e8ecf2;
+  --text-secondary: #b4c0d0;
+  --text-muted: #6b7d95;
+  --border-subtle: rgba(200,169,110,.15);
+  --border-accent: rgba(200,169,110,.35);
+  --card-bg: rgba(18,30,54,.7);
+  --card-hover: rgba(22,38,68,.85);
+  --success: #4ade80;
+  --danger: #f87171;
+  --font-display: 'Georgia', 'Times New Roman', 'STSong', 'SimSun', 'Songti SC', serif;
+  --font-body: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --shadow-card: 0 2px 24px rgba(0,0,0,.3), 0 0 0 1px var(--border-subtle);
+  --shadow-gold: 0 0 32px rgba(200,169,110,.08);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; background: var(--navy-deep); }
+.skip-link { position: absolute; top: -100px; left: 16px; z-index: 999; background: var(--gold); color: var(--navy-deep); padding: 8px 16px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 600; text-decoration: none; }
+.skip-link:focus { top: 12px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+body {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(200,169,110,.08);
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(200,169,110,.04) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 50% at 20% 40%, rgba(24,48,80,.6) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 80% 70%, rgba(24,48,80,.4) 0%, transparent 70%),
+    var(--navy-deep);
+  min-height: 100vh;
+}
+
+/* Subtle background pattern */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(200,169,110,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,169,110,.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 30%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 30%, transparent 100%);
+}
+
+/* ── HEADER ── */
+.hero {
+  position: relative;
+  z-index: 1;
+  padding: 40px 24px 32px;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(200,169,110,.06) 0%, transparent 100%);
+}
+
+.brand-crest {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.logo-wrap {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold-dim);
+  overflow: hidden;
+  box-shadow: 0 0 48px rgba(200,169,110,.14), inset 0 0 36px rgba(200,169,110,.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 35% 35%, rgba(200,169,110,.08), rgba(10,22,40,.95));
+}
+
+.logo-wrap img {
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Decorative rule */
+.decor-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.decor-divider::before,
+.decor-divider::after {
+  content: '';
+  height: 1px;
+  width: 40px;
+  background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+}
+
+.decor-divider .diamond {
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  opacity: .7;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  color: var(--gold-light);
+  margin-bottom: 8px;
+  text-shadow: 0 0 60px rgba(200,169,110,.15);
+  text-wrap: balance;
+}
+
+.hero .subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  font-weight: 300;
+}
+
+/* ── CONTAINER ── */
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 16px 40px;
+}
+
+/* ── SECTION ── */
+.section {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 22px 18px;
+  margin-bottom: 20px;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: fadeUp .6s ease both;
+}
+
+.section:nth-child(2) { animation-delay: .1s; }
+.section:nth-child(3) { animation-delay: .2s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-subtle);
+  position: relative;
+}
+
+.section-header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 48px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.section-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.icon-pkg { background: rgba(200,169,110,.12); border: 1px solid rgba(200,169,110,.2); }
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--gold-light);
+  letter-spacing: 1px;
+}
+
+.section-tag {
+  display: inline-block;
+  font-size: 10px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-left: 8px;
+  vertical-align: middle;
+  font-family: var(--font-body);
+}
+
+.tag-rec { background: rgba(200,169,110,.15); color: var(--gold); border: 1px solid rgba(200,169,110,.25); }
+
+/* ── SCROLL HINT ── */
+.scroll-hint {
+  text-align: center;
+  font-size: 10px;
+  color: var(--text-muted);
+  padding: 4px 0 12px;
+  letter-spacing: 1px;
+}
+
+/* ── TABLE ── */
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 0 -18px;
+  padding: 0 18px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(200,169,110,.15) transparent;
+}
+
+.table-wrap::-webkit-scrollbar { height: 4px; }
+.table-wrap::-webkit-scrollbar-track { background: transparent; }
+.table-wrap::-webkit-scrollbar-thumb { background: rgba(200,169,110,.15); border-radius: 4px; }
+
+.price-table {
+  min-width: 680px;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 11px;
+}
+
+.price-table thead th {
+  background: linear-gradient(180deg, var(--navy-light), var(--navy-mid));
+  color: var(--gold-light);
+  font-weight: 600;
+  font-size: 10px;
+  padding: 10px 6px;
+  border-bottom: 2px solid var(--gold-dim);
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  letter-spacing: .5px;
+}
+
+.price-table thead th:first-child {
+  border-radius: var(--radius-sm) 0 0 0;
+}
+
+.price-table thead th:last-child {
+  border-radius: 0 var(--radius-sm) 0 0;
+}
+
+.price-table tbody td,
+.price-table tbody th {
+  padding: 9px 7px;
+  border-bottom: 1px solid var(--border-subtle);
+  vertical-align: middle;
+}
+
+.price-table tbody th {
+  background: rgba(15,31,56,.5);
+  text-align: left;
+  white-space: nowrap;
+  font-weight: 500;
+  color: var(--text-secondary);
+  font-size: 10px;
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+
+.price-table td {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 11px;
+  transition: background .2s;
+  font-variant-numeric: tabular-nums;
+}
+
+.price-table tr:hover td {
+  background: rgba(200,169,110,.04);
+}
+
+.price-table .check {
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.price-table .na {
+  color: var(--text-muted);
+  opacity: .5;
+}
+
+.price-highlight td {
+  background: rgba(200,169,110,.04) !important;
+}
+
+.price-row th {
+  background: rgba(200,169,110,.06) !important;
+  color: var(--gold-light) !important;
+  font-weight: 600 !important;
+}
+
+.price-row td {
+  color: var(--gold-light);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: .5px;
+}
+
+/* ── SERVICE CARD ── */
+.service-card {
+  background: linear-gradient(135deg, rgba(16,30,54,.8), rgba(12,22,42,.8));
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-bottom: 12px;
+  border: 1px solid var(--border-subtle);
+  position: relative;
+  overflow: hidden;
+  transition: border-color .3s, box-shadow .3s;
+}
+
+.service-card:last-child { margin-bottom: 0; }
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--gold), var(--gold-dim));
+  border-radius: 3px 0 0 3px;
+}
+
+.service-card:hover {
+  border-color: var(--border-accent);
+  box-shadow: 0 4px 24px rgba(200,169,110,.06);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  gap: 12px;
+}
+
+.card-name {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--gold-light);
+  letter-spacing: 1px;
+}
+
+.card-price {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gold);
+  white-space: nowrap;
+  letter-spacing: .5px;
+}
+
+.card-price span {
+  font-size: 11px;
+  font-weight: 400;
+  opacity: .7;
+}
+
+.card-scene {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  line-height: 1.6;
+  padding: 8px 10px;
+  background: rgba(200,169,110,.03);
+  border-radius: var(--radius-sm);
+  border-left: 2px solid rgba(200,169,110,.15);
+}
+
+.card-detail {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+
+.card-detail strong {
+  color: var(--gold-light);
+  font-weight: 500;
+}
+
+.card-note {
+  font-size: 10px;
+  color: var(--gold-dim);
+  margin-top: 10px;
+  font-style: italic;
+  letter-spacing: .5px;
+}
+
+/* Sub items */
+.sub-list {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--border-subtle);
+}
+
+.sub-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  font-size: 11px;
+  gap: 12px;
+}
+
+.sub-item-name {
+  color: var(--text-secondary);
+}
+
+.sub-item-tag {
+  font-size: 9px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* ── COMP TABLE ── */
+.comp-table {
+  min-width: 700px;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 10px;
+}
+
+.comp-table thead th {
+  background: linear-gradient(180deg, var(--navy-light), var(--navy-mid));
+  color: var(--gold-light);
+  font-weight: 600;
+  font-size: 9px;
+  padding: 9px 4px;
+  border-bottom: 2px solid var(--gold-dim);
+  white-space: nowrap;
+  letter-spacing: .5px;
+}
+
+.comp-table thead th.self-col {
+  background: linear-gradient(180deg, #5a3a1a, #3d2812);
+  border-bottom-color: var(--gold);
+}
+
+.comp-table tbody td,
+.comp-table tbody th {
+  padding: 8px 5px;
+  border-bottom: 1px solid var(--border-subtle);
+  text-align: center;
+  vertical-align: middle;
+  font-size: 10px;
+}
+
+.comp-table tbody th {
+  background: rgba(15,31,56,.5);
+  text-align: left;
+  font-weight: 500;
+  color: var(--text-secondary);
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+
+.comp-table .best {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.comp-table .na {
+  color: var(--text-muted);
+  opacity: .4;
+}
+
+/* ── FOOTER ── */
+.footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 32px 16px 40px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.footer-brand {
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--gold-light);
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+
+.footer-tagline {
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 400px) {
+  .hero { padding: 32px 16px 24px; }
+  .hero h1 { font-size: 22px; letter-spacing: 2px; }
+  .section { padding: 16px 14px; }
+  .price-table { font-size: 10px; }
+  .price-table thead th { font-size: 9px; padding: 8px 4px; }
+  .price-table tbody td,
+  .price-table tbody th { padding: 7px 5px; }
+  .card-name { font-size: 14px; }
+}
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">跳过导航，直达内容</a>
+
+<!-- ═══════════ HERO ═══════════ -->
+<header class="hero">
+  <div class="brand-crest">
+    <div class="logo-wrap">
+      <img src="https://xuefu-price.oss-cn-beijing.aliyuncs.com/logo.png" alt="学府青创研究团队 Logo" width="82" height="82">
+    </div>
+  </div>
+
+  <div class="decor-divider">
+    <span class="diamond"></span>
+  </div>
+
+  <h1>大学生成长高阶服务体系</h1>
+  <p class="subtitle">学府青创研究团队 · 一站式精英培育</p>
+</header>
+
+<!-- ═══════════ MAIN ═══════════ -->
+<main class="container" id="main-content">
+
+  <!-- ── 套餐服务模式 ── -->
+  <section class="section" aria-labelledby="pkg-title">
+    <div class="section-header">
+      <div class="section-icon icon-pkg" aria-hidden="true">📦</div>
+      <h2 class="section-title" id="pkg-title">套餐服务模式<span class="section-tag tag-rec">推荐</span></h2>
+    </div>
+    <p class="scroll-hint">← 左右滑动查看完整方案 →</p>
+    <div class="table-wrap">
+      <table class="price-table">
+        <thead>
+          <tr>
+            <th>系列板块</th>
+            <th>辅导形式</th>
+            <th>筑航<br>竞赛成长</th>
+            <th>智航<br>科研赋能</th>
+            <th>启航<br>标准版</th>
+            <th>启航<br>进阶版</th>
+            <th>领航<br>科研起步</th>
+            <th>领航<br>科研突破</th>
+            <th>领航<br>科研卓越</th>
+            <th>领航<br>科研顶刊</th>
+            <th>全能<br>卓越版</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>大学全程规划与咨询</th>
+            <td style="font-size:9px;text-align:left;">专业规划师+学长学姐，量身打造全周期发展路线</td>
+            <td class="check">●</td><td class="check">●</td><td class="check">●</td><td class="check">●</td>
+            <td class="check">●</td><td class="check">●</td><td class="check">●</td><td class="check">●</td><td class="check">●</td>
+          </tr>
+          <tr>
+            <th>本校保研政策解读</th>
+            <td style="font-size:9px;text-align:left;">一对一/多对一帮助理解政策，形成规划目标</td>
+            <td class="check">●</td><td class="check">●</td><td class="check">●</td><td class="check">●</td>
+            <td class="check">●</td><td class="check">●</td><td class="check">●</td><td class="check">●</td><td class="check">●</td>
+          </tr>
+          <tr>
+            <th>简历撰写指导</th>
+            <td style="font-size:9px;text-align:left;">一对一/多对一，针对个人情况进行简历优化</td>
+            <td class="check">●</td><td class="check">●</td><td class="check">●</td><td class="check">●</td>
+            <td class="check">●</td><td class="check">●</td><td class="check">●</td><td class="check">●</td><td class="check">●</td>
+          </tr>
+          <tr class="price-highlight">
+            <th>竞赛实践能力提升</th>
+            <td style="font-size:9px;text-align:left;">985/211硕博团队竞赛全流程指导(国创赛/挑战杯/创青春等)</td>
+            <td>大学生<br>竞赛省奖</td>
+            <td>大学生<br>竞赛省奖</td>
+            <td>84项白名单<br>竞赛省奖(整队)</td>
+            <td>84项白名单<br>竞赛国奖(整队)</td>
+            <td>若干项目<br>深度辅导</td>
+            <td>若干项目<br>深度辅导</td>
+            <td>若干项目<br>深度辅导</td>
+            <td>若干项目<br>深度辅导</td>
+            <td>可定制</td>
+          </tr>
+          <tr class="price-highlight">
+            <th>科研论文项目</th>
+            <td style="font-size:9px;text-align:left;">博导硕导指导+硕博团队全程带队，论文辅导+发表</td>
+            <td class="na">—</td>
+            <td>EI会议<br>发表</td>
+            <td class="na">—</td>
+            <td class="na">—</td>
+            <td>SCI/SSCI<br>四区发表</td>
+            <td>SCI/SSCI<br>三区发表</td>
+            <td>SCI/SSCI<br>二区发表</td>
+            <td>SCI/SSCI<br>一区发表</td>
+            <td>可定制</td>
+          </tr>
+          <tr class="price-row">
+            <th colspan="2">投资（元）</th>
+            <td>7,800</td>
+            <td>19,000</td>
+            <td>36,000</td>
+            <td>50,000</td>
+            <td>84,000</td>
+            <td>93,000</td>
+            <td>157,000</td>
+            <td>170,000</td>
+            <td>可定制</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ── 单项产品服务 ── -->
+  <section class="section" aria-labelledby="single-title">
+    <div class="section-header">
+      <div class="section-icon icon-pkg" aria-hidden="true">◆</div>
+      <h2 class="section-title" id="single-title">单项产品服务</h2>
+    </div>
+
+    <article class="service-card">
+      <div class="card-header">
+        <h3 class="card-name">大学生规划服务</h3>
+        <div class="card-price">¥ 699<span>/小时</span></div>
+      </div>
+      <p class="card-scene">适合家长担心孩子大学四年缺少清晰规划，需要快速确定方向并锚定发展路径与目标的学生</p>
+      <p class="card-detail">由专业硕博团队/金牌导师进行<strong>1v1深度咨询</strong>，围绕学业基础、兴趣方向、时间安排与升学诉求，帮助学生快速理清大学阶段发展主线与优先级，提供最具前景的个性化成长规划建议。</p>
+      <p class="card-note">适合缺失清晰规划的学生</p>
+    </article>
+
+    <article class="service-card">
+      <div class="card-header">
+        <h3 class="card-name">竞赛成果服务</h3>
+        <div class="card-price">硕博团队<span> 全流程辅导</span></div>
+      </div>
+      <p class="card-scene">适合希望尽快拿到高含金量竞赛成果，追求保研/考研/评奖评优，却缺少项目经历、不会选赛道、不会组队的学生</p>
+      <p class="card-detail">985/211硕博团队进行<strong>竞赛项目全流程指导</strong>，从选题确认到路演答辩，覆盖国创赛、挑战杯、创青春、三创赛、商挑等赛事。一年内获奖，未获奖全额退费。</p>
+      <div class="sub-list">
+        <div class="sub-item"><span class="sub-item-name">84项白名单竞赛省奖（整队）</span><span class="sub-item-tag">竞赛起步·成果补足</span></div>
+        <div class="sub-item"><span class="sub-item-name">84项白名单竞赛国奖（整队）</span><span class="sub-item-tag">高目标冲奖·背景提升</span></div>
+        <div class="sub-item"><span class="sub-item-name">定制服务</span><span class="sub-item-tag">个性化赛事·成果需求</span></div>
+      </div>
+    </article>
+
+    <article class="service-card">
+      <div class="card-header">
+        <h3 class="card-name">科研论文服务</h3>
+        <div class="card-price">硕博团队<span> 全流程辅导</span></div>
+      </div>
+      <p class="card-scene">适合需要补足科研经历和论文成果，但不会选题、看不懂文献、不会搭研究框架、缺少完整写作经验的学生，以及对高水平学术成果有追求的情况</p>
+      <p class="card-detail">由<strong>博导硕导指导</strong>，985/211硕博团队全程跟踪带队，带领学生从科研入门到能力提升的论文辅导+发表。未录用全额退费。</p>
+      <div class="sub-list">
+        <div class="sub-item"><span class="sub-item-name">SCI / SSCI 四区发表</span><span class="sub-item-tag">科研起步·成果补充</span></div>
+        <div class="sub-item"><span class="sub-item-name">SCI / SSCI 三区发表</span><span class="sub-item-tag">论文质量提升·层级进阶</span></div>
+        <div class="sub-item"><span class="sub-item-name">SCI / SSCI 二区发表</span><span class="sub-item-tag">冲刺更高学术竞争力</span></div>
+        <div class="sub-item"><span class="sub-item-name">SCI / SSCI 一区发表</span><span class="sub-item-tag">高水平成果冲刺</span></div>
+        <div class="sub-item"><span class="sub-item-name">定制服务</span><span class="sub-item-tag">个性化课题·期刊需求</span></div>
+      </div>
+    </article>
+
+    <article class="service-card">
+      <div class="card-header">
+        <h3 class="card-name">大学发展护航服务</h3>
+        <div class="card-price">¥ 2,800<span>/半年</span></div>
+      </div>
+      <p class="card-scene">适合即将步入大学的高中生及家长，对大学阶段的学习安排、学生工作、竞赛科研、专业发展和未来规划缺少清晰认知</p>
+      <p class="card-detail"><strong>1V1标准咨询 + 半年成长陪跑答疑</strong>。匹配学生会主席、国奖获得者等优秀学长学姐资源，围绕大学学习规划、学生工作选择、竞赛科研准备、简历积累、阶段发展路径等问题进行个性化解答与方向指导。</p>
+      <p class="card-note">适合大学起步阶段长期答疑与方向陪跑</p>
+    </article>
+  </section>
+
+  <!-- ── 竞品分析 ── -->
+  <section class="section" aria-labelledby="comp-title">
+    <div class="section-header">
+      <div class="section-icon icon-pkg" aria-hidden="true">◈</div>
+      <h2 class="section-title" id="comp-title">竞品对比分析</h2>
+    </div>
+    <p class="scroll-hint">← 左右滑动查看完整对比 →</p>
+    <div class="table-wrap">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th style="min-width:56px;">对比维度</th>
+            <th class="self-col">学府青创</th>
+            <th>云途保研</th>
+            <th>经管通</th>
+            <th>保研声</th>
+            <th>保研喵</th>
+            <th>保研岛</th>
+            <th>高顿去保研</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>竞赛辅导</th>
+            <td class="best">全流程辅导<br>硕博带队</td>
+            <td>课时辅导为主</td>
+            <td>20课时辅导<br>+CPCI论文</td>
+            <td class="na">—</td>
+            <td>10-12课时辅导</td>
+            <td>课时辅导为主</td>
+            <td>课时辅导为主</td>
+          </tr>
+          <tr>
+            <th>竞赛获奖保障</th>
+            <td class="best">白名单省奖+<br>未获奖全额退</td>
+            <td class="na">—</td>
+            <td class="na">—</td>
+            <td class="na">—</td>
+            <td style="font-size:9px;">非白名单<br>视情况定</td>
+            <td class="na">—</td>
+            <td style="font-size:9px;">国创赛省/国奖<br>未达退20%</td>
+          </tr>
+          <tr>
+            <th>科研发表保障</th>
+            <td class="best">SCI/SSCI<br>未录用全额退</td>
+            <td class="na">—</td>
+            <td style="font-size:9px;">四区发表·未录用<br>退5万+转投会议</td>
+            <td class="na">—</td>
+            <td class="na">—</td>
+            <td style="font-size:9px;">EI/SCI四区+<br>先交一半·退差额</td>
+            <td style="font-size:9px;">视情况匹配<br>期刊与导师</td>
+          </tr>
+          <tr>
+            <th>科研价格</th>
+            <td class="best">72,000+</td>
+            <td class="na">—</td>
+            <td>109,800</td>
+            <td class="na">—</td>
+            <td class="na">—</td>
+            <td>50,000/60,000</td>
+            <td>130,000+</td>
+          </tr>
+          <tr>
+            <th>全流程服务保障</th>
+            <td class="best">全程规划指导<br>未达成全额退费</td>
+            <td style="font-size:9px;">仅数据支持+<br>16课时·无成果</td>
+            <td>按单项定制价格</td>
+            <td>大二开始全程<br>无成果保障</td>
+            <td class="na">—</td>
+            <td style="font-size:9px;">硕/博/清北<br>8-12课时·保EI</td>
+            <td class="na">—</td>
+          </tr>
+          <tr>
+            <th>全流程价格</th>
+            <td class="best">个性化定制</td>
+            <td>9,999/12,999</td>
+            <td>50,000-130,000</td>
+            <td>68,800</td>
+            <td class="na">—</td>
+            <td style="font-size:9px;">59,800/99,800<br>/159,800</td>
+            <td class="na">—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 竞品服务雷达图 -->
+    <div style="margin-top:18px;">
+      <div style="font-family:var(--font-display);font-size:14px;color:var(--gold-light);letter-spacing:1px;margin-bottom:8px;">竞品服务雷达图</div>
+      <canvas id="radarChart" width="340" height="340" style="display:block;max-width:100%;height:auto;margin:0 auto;"></canvas>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="footer">
+  <p class="footer-brand">学府青创研究团队</p>
+  <p class="footer-tagline">精英培育 · 一站式成长护航</p>
+</footer>
+
+
+<script>
+(function() {
+  const canvas = document.getElementById('radarChart');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const w = canvas.parentNode.clientWidth || 340;
+  const size = Math.min(w, 400);
+  canvas.width = size * dpr;
+  canvas.height = size * dpr;
+  canvas.style.width = size + 'px';
+  canvas.style.height = size + 'px';
+  ctx.scale(dpr, dpr);
+
+  const cx = size / 2, cy = size / 2;
+  const radius = size * 0.34;
+  const levels = 5;
+
+  const labels = ['服务覆盖','质量评分','售后保障','科研能力','辅导质量'];
+  const datasets = [
+    { label: '学府青创', color: '#c8a96e', fill: 'rgba(200,169,110,.12)', line: '#c8a96e', data: [9.5, 9.1, 8.8, 10, 10] },
+    { label: '经管通',   color: '#5b8cce', fill: 'rgba(91,140,206,.06)',  line: '#5b8cce', data: [7, 7, 6, 7, 6] },
+    { label: '保研岛',   color: '#6b7d95', fill: 'rgba(107,125,149,.06)',  line: '#6b7d95', data: [6, 6, 6, 7, 6] },
+    { label: '高顿去保研', color: '#d4a574', fill: 'rgba(212,165,116,.06)', line: '#d4a574', data: [5, 5, 4, 6, 5] }
+  ];
+  const count = labels.length;
+  const angleSlice = Math.PI * 2 / count;
+
+  // Helper: point on grid
+  function point(idx, val) {
+    const r = (val / 10) * radius;
+    const a = -Math.PI / 2 + idx * angleSlice;
+    return { x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) };
+  }
+
+  ctx.clearRect(0, 0, size, size);
+
+  // Grid & labels
+  for (let lvl = 1; lvl <= levels; lvl++) {
+    const r = (lvl / levels) * radius;
+    ctx.beginPath();
+    for (let i = 0; i <= count; i++) {
+      const a = -Math.PI / 2 + (i % count) * angleSlice;
+      const px = cx + r * Math.cos(a), py = cy + r * Math.sin(a);
+      i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+    }
+    ctx.strokeStyle = lvl === levels ? 'rgba(200,169,110,.15)' : 'rgba(200,169,110,.06)';
+    ctx.lineWidth = lvl === levels ? 1 : .5;
+    ctx.stroke();
+
+    // Level numbers
+    ctx.fillStyle = 'rgba(200,169,110,.25)';
+    ctx.font = '9px "Georgia","Times New Roman",serif';
+    ctx.textAlign = 'left';
+    ctx.fillText(lvl*2, cx + 4, cy - r + 4);
+  }
+
+  // Axis lines
+  for (let i = 0; i < count; i++) {
+    const p = point(i, 10);
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(p.x, p.y);
+    ctx.strokeStyle = 'rgba(200,169,110,.06)';
+    ctx.lineWidth = .5;
+    ctx.stroke();
+  }
+
+  // Labels
+  for (let i = 0; i < count; i++) {
+    const p = point(i, 11);
+    ctx.fillStyle = 'rgba(180,200,220,.65)';
+    ctx.font = '11px "PingFang SC","Microsoft YaHei",sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(labels[i], p.x, p.y);
+  }
+
+  // Data polygons
+  for (const ds of datasets) {
+    ctx.beginPath();
+    for (let i = 0; i <= count; i++) {
+      const p = point(i % count, ds.data[i % count]);
+      i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
+    }
+    ctx.closePath();
+    ctx.fillStyle = ds.fill;
+    ctx.fill();
+    ctx.strokeStyle = ds.line;
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    // Data points
+    for (let i = 0; i < count; i++) {
+      const p = point(i, ds.data[i]);
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+      ctx.fillStyle = ds.color;
+      ctx.fill();
+    }
+  }
+
+  // Legend
+  const lx = 12, ly = size - 18;
+  ctx.font = '9px "PingFang SC","Microsoft YaHei",sans-serif';
+  for (let j = 0; j < datasets.length; j++) {
+    const x = lx + j * ((size - 24) / 4);
+    ctx.beginPath();
+    ctx.arc(x, ly, 4, 0, Math.PI * 2);
+    ctx.fillStyle = datasets[j].color;
+    ctx.fill();
+    ctx.fillStyle = 'rgba(180,200,220,.7)';
+    ctx.textAlign = 'left';
+    ctx.fillText(datasets[j].label, x + 8, ly + 3);
+  }
+})();
+</script>
+</body>
+</html>
