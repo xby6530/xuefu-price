@@ -1,762 +1,377 @@
-<!DOCTYPE html>
-<html lang="zh-CN" style="color-scheme:dark">
+<!doctype html>
+<html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0a1628">
-<meta name="description" content="学府青创研究团队 · 大学生成长高阶服务体系">
-<title>大学生成长高阶服务体系</title>
+<meta name="description" content="学府青创研究团队｜竞赛、科研与保研辅导服务及价格">
+<title>大学生成长赋能产品</title>
 <style>
-:root {
-  --navy-deep: #0a1628;
-  --navy: #0f1f38;
-  --navy-mid: #152a4a;
-  --navy-light: #1c3358;
-  --gold: #c8a96e;
-  --gold-light: #e0d0a8;
-  --gold-pale: #f0e8d4;
-  --gold-dim: #8b7332;
-  --text-primary: #e8ecf2;
-  --text-secondary: #b4c0d0;
-  --text-muted: #6b7d95;
-  --border-subtle: rgba(200,169,110,.15);
-  --border-accent: rgba(200,169,110,.35);
-  --card-bg: rgba(18,30,54,.7);
-  --card-hover: rgba(22,38,68,.85);
-  --success: #4ade80;
-  --danger: #f87171;
-  --font-display: 'Georgia', 'Times New Roman', 'STSong', 'SimSun', 'Songti SC', serif;
-  --font-body: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --shadow-card: 0 2px 24px rgba(0,0,0,.3), 0 0 0 1px var(--border-subtle);
-  --shadow-gold: 0 0 32px rgba(200,169,110,.08);
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; background: var(--navy-deep); }
-.skip-link { position: absolute; top: -100px; left: 16px; z-index: 999; background: var(--gold); color: var(--navy-deep); padding: 8px 16px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 600; text-decoration: none; }
-.skip-link:focus { top: 12px; }
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-}
-body {
-  font-family: var(--font-body);
-  color: var(--text-primary);
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: rgba(200,169,110,.08);
-  background:
-    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(200,169,110,.04) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 50% at 20% 40%, rgba(24,48,80,.6) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 40% at 80% 70%, rgba(24,48,80,.4) 0%, transparent 70%),
-    var(--navy-deep);
-  min-height: 100vh;
-}
-
-/* Subtle background pattern */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background-image:
-    linear-gradient(rgba(200,169,110,.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(200,169,110,.025) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 30%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 30%, transparent 100%);
-}
-
-/* ── HEADER ── */
-.hero {
-  position: relative;
-  z-index: 1;
-  padding: 40px 24px 32px;
-  text-align: center;
-  background: linear-gradient(180deg, rgba(200,169,110,.06) 0%, transparent 100%);
-}
-
-.brand-crest {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 24px;
-}
-
-.logo-wrap {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  border: 1.5px solid var(--gold-dim);
-  overflow: hidden;
-  box-shadow: 0 0 48px rgba(200,169,110,.14), inset 0 0 36px rgba(200,169,110,.04);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: radial-gradient(circle at 35% 35%, rgba(200,169,110,.08), rgba(10,22,40,.95));
-}
-
-.logo-wrap img {
-  width: 82px;
-  height: 82px;
-  border-radius: 50%;
-  object-fit: cover;
-  display: block;
-}
-
-/* Decorative rule */
-.decor-divider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  margin-bottom: 20px;
-}
-
-.decor-divider::before,
-.decor-divider::after {
-  content: '';
-  height: 1px;
-  width: 40px;
-  background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
-}
-
-.decor-divider .diamond {
-  width: 6px;
-  height: 6px;
-  background: var(--gold);
-  transform: rotate(45deg);
-  opacity: .7;
-}
-
-.hero h1 {
-  font-family: var(--font-display);
-  font-size: 26px;
-  font-weight: 400;
-  letter-spacing: 3px;
-  color: var(--gold-light);
-  margin-bottom: 8px;
-  text-shadow: 0 0 60px rgba(200,169,110,.15);
-  text-wrap: balance;
-}
-
-.hero .subtitle {
-  font-size: 13px;
-  color: var(--text-muted);
-  letter-spacing: 2px;
-  font-weight: 300;
-}
-
-/* ── CONTAINER ── */
-.container {
-  position: relative;
-  z-index: 1;
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 0 16px 40px;
-}
-
-/* ── SECTION ── */
-.section {
-  background: var(--card-bg);
-  border-radius: var(--radius-lg);
-  padding: 22px 18px;
-  margin-bottom: 20px;
-  border: 1px solid var(--border-subtle);
-  box-shadow: var(--shadow-card);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  animation: fadeUp .6s ease both;
-}
-
-.section:nth-child(2) { animation-delay: .1s; }
-.section:nth-child(3) { animation-delay: .2s; }
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.section-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 18px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--border-subtle);
-  position: relative;
-}
-
-.section-header::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 48px;
-  height: 2px;
-  background: linear-gradient(90deg, var(--gold), transparent);
-}
-
-.section-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  flex-shrink: 0;
-}
-
-.icon-pkg { background: rgba(200,169,110,.12); border: 1px solid rgba(200,169,110,.2); }
-
-.section-title {
-  font-family: var(--font-display);
-  font-size: 17px;
-  font-weight: 400;
-  color: var(--gold-light);
-  letter-spacing: 1px;
-}
-
-.section-tag {
-  display: inline-block;
-  font-size: 10px;
-  padding: 3px 10px;
-  border-radius: 20px;
-  font-weight: 500;
-  letter-spacing: 1px;
-  margin-left: 8px;
-  vertical-align: middle;
-  font-family: var(--font-body);
-}
-
-.tag-rec { background: rgba(200,169,110,.15); color: var(--gold); border: 1px solid rgba(200,169,110,.25); }
-
-/* ── SCROLL HINT ── */
-.scroll-hint {
-  text-align: center;
-  font-size: 10px;
-  color: var(--text-muted);
-  padding: 4px 0 12px;
-  letter-spacing: 1px;
-}
-
-/* ── TABLE ── */
-.table-wrap {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  margin: 0 -18px;
-  padding: 0 18px;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(200,169,110,.15) transparent;
-}
-
-.table-wrap::-webkit-scrollbar { height: 4px; }
-.table-wrap::-webkit-scrollbar-track { background: transparent; }
-.table-wrap::-webkit-scrollbar-thumb { background: rgba(200,169,110,.15); border-radius: 4px; }
-
-.price-table {
-  min-width: 780px;
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  font-size: 14px;
-}
-
-.price-table thead th {
-  background: linear-gradient(180deg, var(--navy-light), var(--navy-mid));
-  color: var(--gold-light);
-  font-weight: 600;
-  font-size: 12px;
-  padding: 12px 10px;
-  border-bottom: 2px solid var(--gold-dim);
-  white-space: nowrap;
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  letter-spacing: .5px;
-}
-
-.price-table thead th:first-child {
-  border-radius: var(--radius-sm) 0 0 0;
-  min-width: 110px;
-}
-
-.price-table thead th:nth-child(2) {
-  min-width: 150px;
-}
-
-.price-table thead th:last-child {
-  border-radius: 0 var(--radius-sm) 0 0;
-}
-
-.price-table tbody td,
-.price-table tbody th {
-  padding: 11px 10px;
-  border-bottom: 1px solid var(--border-subtle);
-  vertical-align: middle;
-}
-
-.price-table tbody th {
-  background: rgba(15,31,56,.5);
-  text-align: left;
-  white-space: nowrap;
-  font-weight: 500;
-  color: var(--text-secondary);
-  font-size: 12px;
-  position: sticky;
-  left: 0;
-  z-index: 1;
-  min-width: 110px;
-}
-
-.price-table tbody td:nth-child(2) {
-  min-width: 150px;
-}
-
-.price-table td {
-  text-align: center;
-  color: var(--text-secondary);
-  font-size: 13px;
-  transition: background .2s;
-  font-variant-numeric: tabular-nums;
-}
-
-.price-table tr:hover td {
-  background: rgba(200,169,110,.04);
-}
-
-.price-table .check {
-  color: var(--gold);
-  font-size: 15px;
-  font-weight: 400;
-}
-
-.price-table .na {
-  color: var(--text-muted);
-  opacity: .5;
-}
-
-.price-highlight td {
-  background: rgba(200,169,110,.04) !important;
-}
-
-.price-row th {
-  background: rgba(200,169,110,.06) !important;
-  color: var(--gold-light) !important;
-  font-weight: 600 !important;
-}
-
-.price-row td {
-  color: var(--gold-light);
-  font-weight: 600;
-  font-size: 15px;
-  letter-spacing: .5px;
-}
-
-/* ── SERVICE CARD ── */
-.service-card {
-  background: linear-gradient(135deg, rgba(16,30,54,.8), rgba(12,22,42,.8));
-  border-radius: var(--radius-md);
-  padding: 16px;
-  margin-bottom: 12px;
-  border: 1px solid var(--border-subtle);
-  position: relative;
-  overflow: hidden;
-  transition: border-color .3s, box-shadow .3s;
-}
-
-.service-card:last-child { margin-bottom: 0; }
-
-.service-card::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: linear-gradient(180deg, var(--gold), var(--gold-dim));
-  border-radius: 3px 0 0 3px;
-}
-
-.service-card:hover {
-  border-color: var(--border-accent);
-  box-shadow: 0 4px 24px rgba(200,169,110,.06);
-}
-
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 10px;
-  gap: 12px;
-}
-
-.card-name {
-  font-family: var(--font-display);
-  font-size: 15px;
-  font-weight: 400;
-  color: var(--gold-light);
-  letter-spacing: 1px;
-}
-
-.card-price {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--gold);
-  white-space: nowrap;
-  letter-spacing: .5px;
-}
-
-.card-price span {
-  font-size: 11px;
-  font-weight: 400;
-  opacity: .7;
-}
-
-.card-scene {
-  font-size: 11px;
-  color: var(--text-muted);
-  margin-bottom: 10px;
-  line-height: 1.6;
-  padding: 8px 10px;
-  background: rgba(200,169,110,.03);
-  border-radius: var(--radius-sm);
-  border-left: 2px solid rgba(200,169,110,.15);
-}
-
-.card-detail {
-  font-size: 12px;
-  color: var(--text-secondary);
-  line-height: 1.75;
-}
-
-.card-detail strong {
-  color: var(--gold-light);
-  font-weight: 500;
-}
-
-.card-note {
-  font-size: 10px;
-  color: var(--gold-dim);
-  margin-top: 10px;
-  font-style: italic;
-  letter-spacing: .5px;
-}
-
-/* Sub items */
-.sub-list {
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: 1px dashed var(--border-subtle);
-}
-
-.sub-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 6px 0;
-  font-size: 11px;
-  gap: 12px;
-}
-
-.sub-item-name {
-  color: var(--text-secondary);
-}
-
-.sub-item-tag {
-  font-size: 9px;
-  color: var(--text-muted);
-  white-space: nowrap;
-}
-
-/* ── COMP TABLE ── */
-.comp-table {
-  min-width: 700px;
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  font-size: 10px;
-}
-
-.comp-table thead th {
-  background: linear-gradient(180deg, var(--navy-light), var(--navy-mid));
-  color: var(--gold-light);
-  font-weight: 600;
-  font-size: 9px;
-  padding: 9px 4px;
-  border-bottom: 2px solid var(--gold-dim);
-  white-space: nowrap;
-  letter-spacing: .5px;
-}
-
-.comp-table thead th.self-col {
-  background: linear-gradient(180deg, #5a3a1a, #3d2812);
-  border-bottom-color: var(--gold);
-}
-
-.comp-table tbody td,
-.comp-table tbody th {
-  padding: 8px 5px;
-  border-bottom: 1px solid var(--border-subtle);
-  text-align: center;
-  vertical-align: middle;
-  font-size: 10px;
-}
-
-.comp-table tbody th {
-  background: rgba(15,31,56,.5);
-  text-align: left;
-  font-weight: 500;
-  color: var(--text-secondary);
-  position: sticky;
-  left: 0;
-  z-index: 1;
-}
-
-.comp-table .best {
-  color: var(--gold);
-  font-weight: 600;
-}
-
-.comp-table .na {
-  color: var(--text-muted);
-  opacity: .4;
-}
-
-/* ── FOOTER ── */
-.footer {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  padding: 32px 16px 40px;
-  border-top: 1px solid var(--border-subtle);
-}
-
-.footer-brand {
-  font-family: var(--font-display);
-  font-size: 14px;
-  color: var(--gold-light);
-  letter-spacing: 2px;
-  margin-bottom: 6px;
-}
-
-.footer-tagline {
-  font-size: 10px;
-  color: var(--text-muted);
-  letter-spacing: 1px;
-}
-
-/* ── RESPONSIVE ── */
-@media (max-width: 400px) {
-  .hero { padding: 32px 16px 24px; }
-  .hero h1 { font-size: 22px; letter-spacing: 2px; }
-  .section { padding: 16px 14px; }
-  .price-table { font-size: 12px; }
-  .price-table thead th { font-size: 11px; padding: 10px 6px; }
-  .price-table tbody td,
-  .price-table tbody th { padding: 9px 6px; }
-  .card-name { font-size: 14px; }
-}
+  :root {
+    color-scheme: dark;
+    --background: #0a1628;
+    --panel: #0f1f38;
+    --gold: #c8a96e;
+    --gold-light: #e0d0a8;
+    --gold-dim: #8b7332;
+    --ink: #e8ecf2;
+    --secondary: #b4c0d0;
+    --border: rgba(200, 169, 110, .24);
+    --serif: Georgia, "STSong", "SimSun", "Songti SC", serif;
+    --sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font: 1rem/1.65 var(--sans);
+    color: var(--ink);
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(200, 169, 110, .07), transparent 30rem),
+      radial-gradient(ellipse at 10% 40%, rgba(27, 51, 86, .52), transparent 40rem),
+      var(--background);
+  }
+
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--gold-light); outline-offset: 4px; }
+  h1, h2, h3, p, dl, dd { margin: 0; }
+  .skip {
+    position: absolute;
+    z-index: 3;
+    inset: .75rem auto auto .75rem;
+    padding: .5rem .75rem;
+    background: var(--gold-light);
+    color: var(--background);
+    transform: translateY(-200%);
+  }
+  .skip:focus { transform: none; }
+
+  .hero {
+    padding: 2rem 1rem 1.65rem;
+    text-align: center;
+  }
+  .brand-crest {
+    display: block;
+    width: 4.5rem;
+    height: 4.5rem;
+    margin: 0 auto 1rem;
+    padding: .19rem;
+    border: 1px solid var(--gold-dim);
+    border-radius: 50%;
+    box-shadow: 0 0 2rem rgba(200, 169, 110, .17);
+  }
+  .brand-crest img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  .ornament { display: flex; justify-content: center; align-items: center; gap: .65rem; margin: 0 0 .8rem; }
+  .ornament::before, .ornament::after {
+    content: "";
+    width: 2.4rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dim));
+  }
+  .ornament::after { transform: rotate(180deg); }
+  .diamond { width: .32rem; height: .32rem; background: var(--gold); transform: rotate(45deg); }
+
+  h1, h2, h3, .footer-brand { color: var(--gold-light); font-family: var(--serif); }
+  h1 { font-size: clamp(1.28rem, 5.8vw, 1.9rem); font-weight: 500; letter-spacing: .07em; line-height: 1.35; }
+  .subtitle { margin-top: .55rem; color: var(--secondary); font-size: .86rem; letter-spacing: .04em; }
+
+  .page { max-width: 43.75rem; margin: 0 auto; padding: 0 .9rem 2rem; }
+  .section-nav {
+    position: sticky;
+    top: .45rem;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: .23rem;
+    padding: .28rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid rgba(200, 169, 110, .34);
+    border-radius: 1.2rem;
+    background: linear-gradient(145deg, #1a2b47, #0e1c31);
+    box-shadow: 0 .55rem 1.25rem rgba(0, 0, 0, .32), inset 0 1px rgba(255, 255, 255, .045);
+  }
+  .section-nav a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .33rem;
+    min-height: 2.65rem;
+    border: 1px solid transparent;
+    border-radius: .95rem;
+    color: var(--ink);
+    font-weight: 650;
+    font-size: clamp(.8rem, 2.8vw, .95rem);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .icon { display: block; flex: none; width: 1em; height: 1em; }
+  .section-nav .icon { width: 1.02rem; height: 1.02rem; color: var(--gold-light); }
+  .section-nav a:hover, .section-nav a:focus-visible,
+  .page:has(#competition:target) a[href="#competition"],
+  .page:has(#research:target) a[href="#research"],
+  .page:has(#admission:target) a[href="#admission"],
+  .page:not(:has(.service:target)) a[href="#competition"] {
+    border-color: rgba(200, 169, 110, .52);
+    color: #f5e4bf;
+    background: linear-gradient(140deg, rgba(200, 169, 110, .22), rgba(200, 169, 110, .07));
+  }
+
+  .service { margin-bottom: 1.55rem; scroll-margin-top: 4.35rem; }
+  .section-heading {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+    gap: .8rem;
+    padding: .9rem clamp(.7rem, 3vw, 1.05rem);
+    margin-bottom: .75rem;
+    border: 1px solid rgba(200, 169, 110, .35);
+    border-radius: .85rem;
+    background:
+      radial-gradient(ellipse at top right, rgba(200, 169, 110, .14), transparent 65%),
+      linear-gradient(120deg, #192f4d, #111f36);
+  }
+  .section-heading::after {
+    content: "";
+    position: absolute;
+    inset: auto 1rem -1px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold), transparent 70%);
+  }
+  .section-emblem {
+    display: grid;
+    place-items: center;
+    width: clamp(2.15rem, 8vw, 2.75rem);
+    aspect-ratio: 1;
+    border: 1px solid rgba(200, 169, 110, .48);
+    border-radius: .7rem;
+    color: #f1dcae;
+    background: linear-gradient(150deg, rgba(200, 169, 110, .24), rgba(200, 169, 110, .07));
+  }
+  .section-emblem .icon { width: 57%; height: 57%; }
+  h2 { font-size: clamp(1.18rem, 4.3vw, 1.45rem); line-height: 1.35; letter-spacing: .045em; }
+  .section-heading p { margin-top: .3rem; color: var(--secondary); font-size: .88rem; }
+
+  .card {
+    padding: .85rem 1rem .85rem .9rem;
+    margin-bottom: .65rem;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    border-radius: .68rem;
+    background: linear-gradient(135deg, #122340, #0e1a30);
+    box-shadow: 0 .25rem 1rem rgba(0, 0, 0, .18);
+  }
+  h3 { font-size: 1.05rem; letter-spacing: .025em; }
+  .card-intro { margin-top: .3rem; color: var(--secondary); font-size: .875rem; }
+  .price-list { margin-top: .45rem; }
+  .price-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: .5rem;
+    align-items: baseline;
+    padding: .5rem 0;
+    border-top: 1px solid var(--border);
+  }
+  .price-row:last-child { padding-bottom: .08rem; }
+  .price {
+    color: var(--gold-light);
+    font-size: clamp(1.02rem, 4.7vw, 1.24rem);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .refund {
+    padding: .7rem .75rem;
+    margin-top: .8rem;
+    border: 1px solid rgba(200, 169, 110, .4);
+    border-radius: .55rem;
+    background: rgba(200, 169, 110, .075);
+    font-size: .9rem;
+  }
+  .refund-promise { color: var(--gold-light); font-weight: 650; }
+  .refund-promise strong { margin-left: .25em; font-size: 1.16em; white-space: nowrap; }
+  .refund-label { margin-top: .56rem; font-weight: 650; }
+  .refund ol { margin: .15rem 0 0; padding-left: 1.25rem; color: var(--secondary); }
+  .refund li + li { margin-top: .18rem; }
+
+  .total { display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
+  .total .price { font-size: 1.5rem; }
+  .stage + .stage { border-top: 1px dashed var(--border); padding-top: .85rem; margin-top: .85rem; }
+  .stage h3 { font-weight: 650; }
+  .stage dl { margin-top: .55rem; }
+  .stage-item + .stage-item { margin-top: .55rem; }
+  .stage-item dt { font-size: .94rem; font-weight: 650; }
+  .stage-item dd { color: var(--secondary); font-size: .875rem; line-height: 1.55; }
+
+  .footer { padding: 1.3rem .9rem 1.8rem; text-align: center; border-top: 1px solid var(--border); }
+  .footer-brand { letter-spacing: .12em; }
+  .footer-tagline { margin-top: .2rem; font-size: .85rem; color: var(--secondary); }
 </style>
 </head>
 <body>
+  <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+    <symbol id="icon-trophy" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M7 4h10v5a5 5 0 0 1-10 0V4Zm0 2H4v2a3 3 0 0 0 3 3m10-5h3v2a3 3 0 0 1-3 3m-5 3v5m-4 1h8"/>
+      </g>
+    </symbol>
+    <symbol id="icon-research" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 4h6m-5 0v6l-5 8a1.3 1.3 0 0 0 1.1 2h11.8a1.3 1.3 0 0 0 1.1-2l-5-8V4m-6 11h8"/>
+      </g>
+    </symbol>
+    <symbol id="icon-admission" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m3 9 9-5 9 5-9 5-9-5Zm4 2.2v4.1c2.8 2.9 7.2 2.9 10 0v-4.1M21 9v7"/>
+      </g>
+    </symbol>
+  </svg>
+  <a class="skip" href="#content">跳到服务内容</a>
 
-<a href="#main-content" class="skip-link">跳过导航，直达内容</a>
+  <header class="hero">
+    <span class="brand-crest"><img src="logo.png" width="72" height="72" alt="学府青创研究团队 Logo"></span>
+    <div class="ornament" aria-hidden="true"><span class="diamond"></span></div>
+    <h1>大学生成长赋能产品</h1>
+    <p class="subtitle">学府青创研究团队 · 一站式精英培育</p>
+  </header>
 
-<!-- ═══════════ HERO ═══════════ -->
-<header class="hero">
-  <div class="brand-crest">
-    <div class="logo-wrap">
-      <img src="logo.png" alt="学府青创研究团队 Logo" width="72" height="72">
-    </div>
+  <div class="page">
+    <nav class="section-nav" aria-label="服务导航">
+      <a href="#competition"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-trophy"></use></svg><span>竞赛辅导</span></a>
+      <a href="#research"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-research"></use></svg><span>科研辅导</span></a>
+      <a href="#admission"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-admission"></use></svg><span>保研服务</span></a>
+    </nav>
+
+    <main id="content" tabindex="-1">
+      <section class="service" id="competition" aria-labelledby="competition-title">
+        <header class="section-heading">
+          <span class="section-emblem" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-trophy"></use></svg></span>
+          <div>
+            <h2 id="competition-title">竞赛全流程辅导</h2>
+            <p>从选题和项目打磨，到申报、路演答辩与成果呈现，提供全程指导。</p>
+          </div>
+        </header>
+
+        <div class="card">
+          <h3>国家级奖项</h3>
+          <dl class="price-list">
+            <div class="price-row"><dt>第一位次</dt><dd class="price">¥19,800</dd></div>
+            <div class="price-row"><dt>任意位次</dt><dd class="price">¥9,800</dd></div>
+          </dl>
+        </div>
+
+        <div class="card">
+          <h3>省部级奖项</h3>
+          <dl class="price-list">
+            <div class="price-row"><dt>任意位次</dt><dd class="price">¥6,800</dd></div>
+          </dl>
+          <div class="refund">
+            <p class="refund-promise">如最后未获省级及以上奖项，<strong>退费120%</strong></p>
+            <p class="refund-label">退费适用条件</p>
+            <ol>
+              <li>赛事在 84 项白名单范围内，不限定具体赛事。</li>
+              <li>适用范围为山东省内。</li>
+              <li>适用学生为大一、大二学生。</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section class="service" id="research" aria-labelledby="research-title">
+        <header class="section-heading">
+          <span class="section-emblem" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-research"></use></svg></span>
+          <div>
+            <h2 id="research-title">科研全流程辅导</h2>
+            <p>从研究选题到论文写作与修改，按论文用途和发表目标提供指导。</p>
+          </div>
+        </header>
+
+        <div class="card">
+          <h3>基础论文辅导</h3>
+          <dl class="price-list">
+            <div class="price-row"><dt>工作／参营论文一篇</dt><dd class="price">¥19,800</dd></div>
+          </dl>
+        </div>
+
+        <div class="card">
+          <h3>SCI / SSCI 发表辅导</h3>
+          <p class="card-intro">以下论文产出位次均为第一位次</p>
+          <dl class="price-list">
+            <div class="price-row"><dt>SCI/SSCI 四区</dt><dd class="price">¥29,800</dd></div>
+            <div class="price-row"><dt>SCI/SSCI 三区</dt><dd class="price">¥39,800</dd></div>
+            <div class="price-row"><dt>SCI/SSCI 二区</dt><dd class="price">¥166,000</dd></div>
+            <div class="price-row"><dt>SCI/SSCI 一区</dt><dd class="price">¥183,000</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="service" id="admission" aria-labelledby="admission-title">
+        <header class="section-heading">
+          <span class="section-emblem" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-admission"></use></svg></span>
+          <div>
+            <h2 id="admission-title">保研全流程服务</h2>
+            <p>从学业与经历准备起步，逐步完善申请材料，练习导师沟通与面试表达。</p>
+          </div>
+        </header>
+
+        <div class="card total">
+          <h3>服务总价</h3>
+          <p class="price">¥26,800</p>
+        </div>
+
+        <div class="card">
+          <div class="stage">
+            <h3>学业与经历准备</h3>
+            <dl>
+              <div class="stage-item">
+                <dt>英语四六级辅导</dt>
+                <dd>梳理薄弱项，制定可执行的备考计划。</dd>
+              </div>
+              <div class="stage-item">
+                <dt>专业课辅导</dt>
+                <dd>梳理核心知识，针对重点和薄弱环节复习。</dd>
+              </div>
+              <div class="stage-item">
+                <dt>竞赛指导</dt>
+                <dd>结合专业方向筛选赛事，梳理参赛思路与准备节奏。</dd>
+              </div>
+              <div class="stage-item">
+                <dt>科研指导</dt>
+                <dd>梳理研究兴趣与项目经历，明确下一步准备方向。</dd>
+              </div>
+            </dl>
+          </div>
+          <div class="stage">
+            <h3>申请材料与导师沟通</h3>
+            <dl>
+              <div class="stage-item">
+                <dt>简历修改</dt>
+                <dd>梳理学业、竞赛与科研经历，突出个人贡献和成果。</dd>
+              </div>
+              <div class="stage-item">
+                <dt>导师选择与套磁</dt>
+                <dd>根据研究兴趣筛选导师，梳理首次联系邮件的内容与沟通重点。</dd>
+              </div>
+            </dl>
+          </div>
+          <div class="stage">
+            <h3>面试准备</h3>
+            <dl>
+              <div class="stage-item">
+                <dt>面试指导</dt>
+                <dd>打磨自我介绍，练习专业问答和科研、竞赛经历陈述。</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
+    </main>
   </div>
 
-  <div class="decor-divider">
-    <span class="diamond"></span>
-  </div>
-
-  <h1>大学生成长高阶服务体系</h1>
-  <p class="subtitle">学府青创研究团队 · 一站式精英培育</p>
-</header>
-
-<!-- ═══════════ MAIN ═══════════ -->
-<main class="container" id="main-content">
-
-  <!-- ── 套餐服务模式 ── -->
-  <section class="section" aria-labelledby="pkg-title">
-    <div class="section-header">
-      <div class="section-icon icon-pkg" aria-hidden="true">📦</div>
-      <h2 class="section-title" id="pkg-title">套餐服务模式<span class="section-tag tag-rec">推荐</span></h2>
-    </div>
-    <p class="scroll-hint">← 左右滑动查看完整方案 →</p>
-    <div class="table-wrap">
-      <table class="price-table">
-        <thead>
-          <tr>
-            <th>系列板块</th>
-            <th>辅导形式</th>
-            <th>筑航<br>竞赛成长</th>
-            <th>智航<br>科研赋能</th>
-            <th>启航<br>标准版</th>
-            <th>启航<br>进阶版</th>
-            <th>领航<br>科研起步</th>
-            <th>领航<br>科研突破</th>
-            <th>领航<br>科研卓越</th>
-            <th>领航<br>科研顶刊</th>
-            <th>全能<br>卓越版</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th>大学全程规划与咨询</th>
-            <td style="font-size:11px;text-align:left;">专业规划师+学长学姐，量身打造全周期发展路线</td>
-            <td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td>
-            <td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td>
-          </tr>
-          <tr>
-            <th>本校保研政策解读</th>
-            <td style="font-size:11px;text-align:left;">一对一/多对一帮助理解政策，形成规划目标</td>
-            <td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td>
-            <td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td>
-          </tr>
-          <tr>
-            <th>简历撰写指导</th>
-            <td style="font-size:11px;text-align:left;">一对一/多对一，针对个人情况进行简历优化</td>
-            <td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td>
-            <td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td>
-          </tr>
-          <tr class="price-highlight">
-            <th>竞赛实践能力提升</th>
-            <td style="font-size:11px;text-align:left;">985/211硕博团队竞赛全流程指导(国创赛/挑战杯/创青春等)</td>
-            <td>大学生<br>竞赛省奖</td>
-            <td>大学生<br>竞赛省奖</td>
-            <td>84项白名单<br>竞赛省奖(整队)</td>
-            <td>84项白名单<br>竞赛国奖(整队)</td>
-            <td>若干项目<br>深度辅导</td>
-            <td>若干项目<br>深度辅导</td>
-            <td>若干项目<br>深度辅导</td>
-            <td>若干项目<br>深度辅导</td>
-            <td>可定制</td>
-          </tr>
-          <tr class="price-highlight">
-            <th>科研论文项目</th>
-            <td style="font-size:11px;text-align:left;">博导硕导指导+硕博团队全程带队，论文辅导+发表</td>
-            <td class="na">—</td>
-            <td>EI会议<br>发表</td>
-            <td class="na">—</td>
-            <td class="na">—</td>
-            <td>SCI/SSCI<br>四区发表</td>
-            <td>SCI/SSCI<br>三区发表</td>
-            <td>SCI/SSCI<br>二区发表</td>
-            <td>SCI/SSCI<br>一区发表</td>
-            <td>可定制</td>
-          </tr>
-          <tr class="price-row">
-            <th colspan="2">价格（元）</th>
-            <td>7,999</td>
-            <td>19,000</td>
-            <td>36,000</td>
-            <td>50,000</td>
-            <td>84,000</td>
-            <td>93,000</td>
-            <td>170,000</td>
-            <td>183,000</td>
-            <td>可定制</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- ── 单项产品服务 ── -->
-  <section class="section" aria-labelledby="single-title">
-    <div class="section-header">
-      <div class="section-icon icon-pkg" aria-hidden="true">◆</div>
-      <h2 class="section-title" id="single-title">单项产品服务</h2>
-    </div>
-
-    <article class="service-card">
-      <div class="card-header">
-        <h3 class="card-name">大学生规划服务</h3>
-        <div class="card-price">¥ 699<span>/小时</span></div>
-      </div>
-      <p class="card-scene">适合家长担心孩子大学四年缺少清晰规划，需要快速确定方向并锚定发展路径与目标的学生</p>
-      <p class="card-detail">由专业硕博团队/金牌导师进行<strong>1v1深度咨询</strong>，围绕学业基础、兴趣方向、时间安排与升学诉求，帮助学生快速理清大学阶段发展主线与优先级，提供最具前景的个性化成长规划建议。</p>
-      <p class="card-note">适合缺失清晰规划的学生</p>
-    </article>
-
-    <article class="service-card">
-      <div class="card-header">
-        <h3 class="card-name">竞赛成果服务</h3>
-        <div class="card-price">硕博团队<span> 全流程辅导</span></div>
-      </div>
-      <p class="card-scene">适合希望尽快拿到高含金量竞赛成果，追求保研/考研/评奖评优，却缺少项目经历、不会选赛道、不会组队的学生</p>
-      <p class="card-detail">985/211硕博团队进行<strong>竞赛项目全流程指导</strong>，从选题确认到路演答辩，覆盖国创赛、挑战杯、创青春、三创赛、商挑等赛事。一年内获奖，未获奖全额退费。</p>
-      <div class="sub-list">
-        <div class="sub-item"><span class="sub-item-name">84项白名单竞赛省奖（整队）</span><span class="sub-item-tag">竞赛起步·成果补足</span></div>
-        <div class="sub-item"><span class="sub-item-name">84项白名单竞赛国奖（整队）</span><span class="sub-item-tag">高目标冲奖·背景提升</span></div>
-        <div class="sub-item"><span class="sub-item-name">定制服务</span><span class="sub-item-tag">个性化赛事·成果需求</span></div>
-      </div>
-    </article>
-
-    <article class="service-card">
-      <div class="card-header">
-        <h3 class="card-name">科研论文服务</h3>
-        <div class="card-price">硕博团队<span> 全流程辅导</span></div>
-      </div>
-      <p class="card-scene">适合需要补足科研经历和论文成果，但不会选题、看不懂文献、不会搭研究框架、缺少完整写作经验的学生，以及对高水平学术成果有追求的情况</p>
-      <p class="card-detail">由<strong>博导硕导指导</strong>，985/211硕博团队全程跟踪带队，带领学生从科研入门到能力提升的论文辅导+发表。未录用全额退费。</p>
-      <div class="sub-list">
-        <div class="sub-item"><span class="sub-item-name">SCI / SSCI 四区发表</span><span class="sub-item-tag">科研起步·成果补充</span></div>
-        <div class="sub-item"><span class="sub-item-name">SCI / SSCI 三区发表</span><span class="sub-item-tag">论文质量提升·层级进阶</span></div>
-        <div class="sub-item"><span class="sub-item-name">SCI / SSCI 二区发表</span><span class="sub-item-tag">冲刺更高学术竞争力</span></div>
-        <div class="sub-item"><span class="sub-item-name">SCI / SSCI 一区发表</span><span class="sub-item-tag">高水平成果冲刺</span></div>
-        <div class="sub-item"><span class="sub-item-name">定制服务</span><span class="sub-item-tag">个性化课题·期刊需求</span></div>
-      </div>
-    </article>
-
-    <article class="service-card">
-      <div class="card-header">
-        <h3 class="card-name">大学发展护航服务</h3>
-        <div class="card-price">¥ 2,999<span>/半年</span></div>
-      </div>
-      <p class="card-scene">适合即将步入大学的高中生及家长，对大学阶段的学习安排、学生工作、竞赛科研、专业发展和未来规划缺少清晰认知</p>
-      <p class="card-detail"><strong>1V1标准咨询 + 半年成长陪跑答疑</strong>。匹配学生会主席、国奖获得者等优秀学长学姐资源，围绕大学学习规划、学生工作选择、竞赛科研准备、简历积累、阶段发展路径等问题进行个性化解答与方向指导。</p>
-      <p class="card-note">适合大学起步阶段长期答疑与方向陪跑</p>
-    </article>
-
-    <article class="service-card">
-      <div class="card-header">
-        <h3 class="card-name">考研全流程辅导</h3>
-        <div class="card-price">定制</div>
-      </div>
-      <p class="card-scene">适合备战全国硕士研究生统一考试的学生及家长，需要在公共课备考、专业课攻克、复试面试等环节获得系统化指导与全程督学</p>
-      <p class="card-detail">由专业硕博团队及考研上岸优秀学长提供<strong>笔试公共课全程督学 + 目标院校专业课精讲 + 复试模拟面试</strong>三大模块，根据学生目标院校和专业匹配对应导师资源，制定个性化复习方案与进度管控。</p>
-      <div class="sub-list">
-        <div class="sub-item"><span class="sub-item-name">笔试公共课督学</span><span class="sub-item-tag">政治·英语·数学</span></div>
-        <div class="sub-item"><span class="sub-item-name">专业课辅导</span><span class="sub-item-tag">目标院校定向</span></div>
-        <div class="sub-item"><span class="sub-item-name">复试辅导</span><span class="sub-item-tag">模拟面试·材料打磨</span></div>
-      </div>
-      <p class="card-note">按目标院校/专业等级定制方案，详询沟通</p>
-    </article>
-  </section>
-
-</main>
-
-<!-- ═══════════ FOOTER ═══════════ -->
-<footer class="footer">
-  <p class="footer-brand">学府青创研究团队</p>
-  <p class="footer-tagline">精英培育 · 一站式成长护航</p>
-</footer>
-
-
+  <footer class="footer">
+    <p class="footer-brand">学府青创研究团队</p>
+    <p class="footer-tagline">精英培育 · 一站式成长护航</p>
+  </footer>
 </body>
-<!-- v=2026-06-01-02 -->
 </html>
